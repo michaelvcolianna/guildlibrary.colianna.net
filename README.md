@@ -1,6 +1,6 @@
 # The Guild Library Appendix
 
-A mutable appendix for my stories.
+A mutable appendix for my stories. Deploys to a Vercel domain because I didn't feel like doing all the config to have my main site hosted on Netlify and this hosted on Vercel as a subdomain.
 
 ## Info
 
