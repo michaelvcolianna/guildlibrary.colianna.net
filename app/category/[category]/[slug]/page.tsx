@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { allEntries } from 'contentlayer/generated'
+import guildUtils from '@/app/utils'
 
 export const generateStaticParams = async () => allEntries.map((entry) => ({
   category: entry.category,
@@ -44,9 +45,7 @@ const EntryLayout = ({ params }: {
       </div>
 
       <div>
-        <Link href={`/category/${entry.category}`}>Back to {entry.category.split('-')
-        .map(a => a.charAt(0).toUpperCase() + a.substring(1))
-        .join('/')}</Link>
+        <Link href={`/category/${entry.category}`}>Back to {guildUtils.categoryName(entry.category)}</Link>
       </div>
 
       <div dangerouslySetInnerHTML={{ __html: entry.body.html }} />

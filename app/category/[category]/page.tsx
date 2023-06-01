@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { allEntries, Entry } from 'contentlayer/generated'
+import guildUtils from '@/app/utils'
 
 function EntryCard(entry: Entry) {
   return (
@@ -24,11 +25,7 @@ const CategoryPage = ({ params }: {
 
   return (
     <div>
-      <h1>Category Page: {params.category
-        .split('-')
-        .map(a => a.charAt(0).toUpperCase() + a.substring(1))
-        .join('/')
-      }</h1>
+      <h1>Category Page: {guildUtils.categoryName(params.category)}</h1>
 
       <div>
         <Link href="/">Back to Home</Link>
