@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { allEntries } from 'contentlayer/generated'
 
 export const generateStaticParams = async () => allEntries.map((entry) => ({
@@ -36,13 +37,21 @@ const EntryLayout = ({ params }: {
 
   return (
     <article>
-      <h1>{entry.title}</h1>
+      <h1>Entry: {entry.title}</h1>
+
+      <div>
+        <Link href="/">Back to Home</Link>
+      </div>
+
+      <div>
+        <Link href={`/category/${entry.category}`}>Back to {entry.category.split('-')
+        .map(a => a.charAt(0).toUpperCase() + a.substring(1))
+        .join('/')}</Link>
+      </div>
 
       <div dangerouslySetInnerHTML={{ __html: entry.body.html }} />
 
-      {entry.spoilers && (
-        <pre>goal: swap title/content iteratively if needed using: {JSON.stringify(entry.spoilers, null, 2)}</pre>
-      )}
+      <pre>goal: swap title/content iteratively if needed using: {JSON.stringify(entry.spoilers, null, 2)}</pre>
     </article>
   )
 }

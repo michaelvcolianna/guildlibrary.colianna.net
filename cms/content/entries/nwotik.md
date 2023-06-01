@@ -9,7 +9,7 @@ spoilers:
     - { title: null, content: null }
     - { title: null, content: null }
 created_at: 2023-05-21T21:51:20+00:00
-updated_at: 2023-05-29T14:53:46+00:00
+updated_at: 2023-06-01T17:37:46+00:00
 ---
 Captain of the [Farsight](/category/spaceships/farsight). He does not appear in the story, and is only mentioned. The captain's first name is Gamban.
 
@@ -17,4 +17,4 @@ Though Captain Nwotik is not described in the story, from [Mary's](/category/cha
 
 **Pronunciation:**
 - gam’ ben
-- na woe’ tick
+- na~woe’ tick (tilde means run the syllables together)

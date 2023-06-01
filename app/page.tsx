@@ -1,28 +1,35 @@
 import Link from 'next/link'
-import { allEntries, Entry } from 'contentlayer/generated'
 
-function EntryCard(entry: Entry) {
+const HomePage = () => {
   return (
     <div>
-      <h2>
-        <Link href={entry.url}>{entry.title}</Link>
-      </h2>
+      <h1>Home Page</h1>
 
-      <div dangerouslySetInnerHTML={{ __html: entry.body.html }} />
+      <ul>
+        <li>
+          <Link href="/category/characters">Characters</Link>
+        </li>
+        <li>
+          <Link href="/category/culture-history">Culture/History</Link>
+        </li>
+        <li>
+          <Link href="/category/mysteries">Mysteries</Link>
+        </li>
+        <li>
+          <Link href="/category/organizations">Organizations</Link>
+        </li>
+        <li>
+          <Link href="/category/planets-cities">Planets/Cities</Link>
+        </li>
+        <li>
+          <Link href="/category/spaceships">Spaceships</Link>
+        </li>
+        <li>
+          <Link href="/category/tech-futurism">Tech/Futurism</Link>
+        </li>
+      </ul>
     </div>
   )
 }
 
-export default function Home() {
-  const entries = allEntries.sort((a, b) => a.ordering - b.ordering)
-
-  return (
-    <div>
-      <h1>Next.js + Contentlayer Example</h1>
-
-      {entries.map((entry, idx) => (
-        <EntryCard key={idx} {...entry} />
-      ))}
-    </div>
-  )
-}
+export default HomePage
