@@ -2,9 +2,17 @@ const { withContentlayer } = require('next-contentlayer')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   reactStrictMode: true,
-  swcMinify: true
+  swcMinify: true,
+  async redirects() {
+    return [
+      {
+        source: '/category',
+        destination: '/',
+        permanent: true
+      }
+    ]
+  }
 }
 
 module.exports = withContentlayer(nextConfig)
