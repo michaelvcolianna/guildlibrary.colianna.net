@@ -1,6 +1,9 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { allEntries } from 'contentlayer/generated'
 import guildUtils from '@/app/utils'
+
+// @todo: swap title/content iteratively if needed using entry.spoilers
 
 export const generateStaticParams = async () => allEntries.map((entry) => ({
   category: entry.category,
@@ -48,9 +51,13 @@ const EntryLayout = ({ params }: {
         <Link href={`/category/${entry.category}`}>Back to {guildUtils.categoryName(entry.category)}</Link>
       </div>
 
-      <div dangerouslySetInnerHTML={{ __html: entry.body.html }} />
+      {entry.hero && (
+        <div>
+          <Image src={`/assets/${entry.hero}`} alt="" height="300" width="300" />
+        </div>
+      )}
 
-      <pre>goal: swap title/content iteratively if needed using: {JSON.stringify(entry.spoilers, null, 2)}</pre>
+      <div dangerouslySetInnerHTML={{ __html: entry.body.html }} />
     </article>
   )
 }

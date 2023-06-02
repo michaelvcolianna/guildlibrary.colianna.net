@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { allEntries, Entry } from 'contentlayer/generated'
 import guildUtils from '@/app/utils'
@@ -9,7 +10,13 @@ function EntryCard(entry: Entry) {
         <Link href={entry.url}>{entry.title}</Link>
       </h2>
 
-      <div dangerouslySetInnerHTML={{ __html: entry.body.html }} />
+      <div>
+        <Image src={entry.hero ? `/assets/${entry.hero}` : '/assets/unknown.jpg'} alt="" height="64" width="64" />
+      </div>
+
+      <div>
+        {entry.excerpt}
+      </div>
     </div>
   )
 }

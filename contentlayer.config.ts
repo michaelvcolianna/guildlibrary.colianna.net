@@ -8,6 +8,9 @@ export const Spoiler = defineNestedType(() => ({
     },
     content: {
       type: 'markdown'
+    },
+    excerpt: {
+      type: 'string'
     }
   }
 }))
@@ -27,6 +30,9 @@ export const Entry = defineDocumentType(() => ({
     category: {
       type: 'string',
       required: true
+    },
+    excerpt: {
+      type: 'string'
     },
     hero: {
       type: 'string'
@@ -54,6 +60,6 @@ export const Entry = defineDocumentType(() => ({
 }))
 
 export default makeSource({
-  contentDirPath: 'cms/content/entries',
+  contentDirPath: 'content/entries',
   documentTypes: [Entry]
 })

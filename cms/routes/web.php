@@ -45,5 +45,7 @@ Route::put('/entries/{entry}/update', function(Request $request, Entry $entry) {
         $entry->removeHero();
     }
 
+    $entry->updateExcerpts();
+
     return redirect()->route('entries.edit', $entry);
 })->name('entries.update');

@@ -15,8 +15,6 @@ class Entry extends Model
     use HasSlug;
     use Orbital;
 
-    const HERO_RELATIVE = '../../storage/app/public/';
-
     protected $guarded = [];
 
     protected $casts = [
@@ -30,6 +28,7 @@ class Entry extends Model
         $table->string('slug');
         $table->string('category');
         $table->string('hero', 2048)->nullable();
+        $table->text('excerpt')->nullable();
         $table->json('spoilers')->nullable();
     }
 
@@ -56,7 +55,7 @@ class Entry extends Model
         return 'slug';
     }
 
-    protected function getMarkdown($clean = false)
+    public function getMarkdown($clean = false)
     {
         $markdown = str($this->content)->markdown();
 
@@ -76,19 +75,14 @@ class Entry extends Model
         return $this->getMarkDown()->toHtmlString();
     }
 
-    public function realHeroPath()
-    {
-        return str($this->hero)->replace(static::HERO_RELATIVE, '');
-    }
-
     public function getHero()
     {
-        return asset('storage/'.$this->realHeroPath());
+        return asset('storage/'.$this->hero);
     }
 
     public function addHero($file)
     {
-        $this->hero = static::HERO_RELATIVE.$file->store();
+        $this->hero = $file->store('entries');
         $this->save();
     }
 
@@ -96,9 +90,29 @@ class Entry extends Model
     {
         if($this->hero)
         {
-            Storage::delete($this->realHeroPath());
+            Storage::delete($this->hero);
             $this->hero = null;
             $this->save();
         }
+    }
+
+    public function updateExcerpts()
+    {
+        $excerpt = str($this->getMarkdown(true))->limit(100);
+
+        $spoilers = $this->spoilers;
+
+        for($i = 0; $i < 3; $i++)
+        {
+            $spoilers[$i]['excerpt'] = $spoilers[$i]['content']
+                ? str(strip_tags(str($spoilers[$i]['content'])->markdown()))->limit(100)->toString()
+                : null
+            ;
+        }
+
+        $this->excerpt = $excerpt->toString();
+        $this->spoilers = $spoilers;
+
+        $this->save();
     }
 }
