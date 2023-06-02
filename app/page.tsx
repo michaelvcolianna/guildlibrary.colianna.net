@@ -1,7 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-function CategoryCard({ href, name, image }) {
+type CardProps = {
+  href: string,
+  name: string,
+  image: string
+}
+
+const CategoryCard: React.FC<CardProps> = (props) => {
+  const { href, name, image } = props
+
   return <li>
     <Link href={href}>
       <div>{name}</div>
