@@ -3,13 +3,13 @@ ordering: 15
 title: Ovadeus
 slug: ovadeus
 category: planets-cities
-excerpt: "A planet in Cratton's empire.\nPronunciation:\n\noh vay’ dee us\noh vay’ dee en (of Ovadeus)\n\nPlanet:\nWo..."
+excerpt: "A planet in Cratton's empire.\nPronunciation:\n\noh vay’ dee us\noh vay’ dee en (of Ovadeus)\n\nPlanet:\nKe..."
 spoilers:
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
 created_at: 2023-05-21T21:51:20+00:00
-updated_at: 2023-06-02T02:51:23+00:00
+updated_at: 2023-06-23T17:23:41+00:00
 ---
 A planet in [Cratton's](/category/planets-cities/cratton) empire.
 
@@ -18,4 +18,4 @@ A planet in [Cratton's](/category/planets-cities/cratton) empire.
 - oh vay’ dee en (of Ovadeus)
 
 **Planet:**
-[Wolf 1061 c](https://en.wikipedia.org/wiki/Wolf_1061c)
+[Kepler 442 b](https://en.wikipedia.org/wiki/Kepler-442b)
