@@ -1,65 +1,144 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { allEntries } from 'contentlayer/generated'
-import guildUtils from '@/app/utils'
+import { allEntries, Entry } from 'contentlayer/generated'
+import { categoryName } from '@/app/utils'
 
-// @todo: swap title/content iteratively if needed using entry.spoilers
+// @todo: Swap title/content iteratively if needed using entry.spoilers.
 
+/**
+ * Retrieve the entry specified in the URL.
+ *
+ * @todo Maybe output an object w/adjacent entries?
+ *
+ * @param  object  params
+ * @return Entry
+ */
+function getEntry(
+  params: {
+    category: string,
+    slug: string
+  }
+): Entry {
+  // Can't try/catch, so first search the entries list
+  let possibleEntry = allEntries.find(
+    (entry) =>
+      entry.category === params.category
+      &&
+      entry._raw.flattenedPath === params.slug
+  )
+
+  // Handle an empty possible entry
+  if(!possibleEntry) {
+    throw new Error(`Entry not found for slug: ${params.category}/${params.slug}`)
+  }
+
+  return possibleEntry
+}
+
+// @var number[]
+enum Direction {
+  Previous = -1,
+  Next = 1
+}
+
+/**
+ * Retrieve an entry before or after a specified entry.
+ *
+ * @param  Entry  entry
+ * @param  Direction  direction
+ * @return Entry
+ */
+function getAdjacentEntry(
+  entry: Entry,
+  direction: Direction
+): Entry|undefined {
+  return allEntries.find(
+    (adjacent) =>
+      adjacent.category === entry.category
+      &&
+      adjacent.ordering === entry.ordering + direction
+    )
+}
+
+// @var string[]
+type NavProps = {
+  entry: Entry,
+  direction: string
+}
+
+// @var componentObject
+const EntryNav: React.FC<NavProps> = (props) => {
+  const { entry, direction } = props
+
+  return (
+    <li>
+      <strong>{direction}:</strong>
+
+      <Link href={entry.url}>{entry.title}</Link>
+    </li>
+  )
+}
+
+// Get the values from the URL
 export const generateStaticParams = async () => allEntries.map((entry) => ({
   category: entry.category,
   slug: entry._raw.flattenedPath
 }))
 
+// For the tab/window title
 export const generateMetadata = ({ params }: {
   params: {
     category: string,
     slug: string
   }
 }) => {
-  const entry = allEntries.find((entry) => entry.category === params.category && entry._raw.flattenedPath === params.slug)
-
-  if(!entry) {
-    throw new Error(`Entry not found for slug: ${params.category}/${params.slug}`)
-  }
+  const entry = getEntry(params)
 
   return {
-    title: entry.title
+    title: `Entry: ${entry.title}`
   }
 }
 
-const EntryLayout = ({ params }: {
+export default function EntryLayout({
+  params
+}: {
   params: {
     category: string,
     slug: string
   }
-}) => {
-  const entry = allEntries.find((entry) => entry.category === params.category && entry._raw.flattenedPath === params.slug)
-
-  if(!entry) {
-    throw new Error(`Entry not found for slug: ${params.category}/${params.slug}`)
-  }
+}) {
+  const entry = getEntry(params)
+  const previousEntry = getAdjacentEntry(entry, Direction.Previous)
+  const nextEntry = getAdjacentEntry(entry, Direction.Next)
 
   return (
-    <article>
-      <h1>Entry: {entry.title}</h1>
+    <>
+      <article>
+        <h1>Entry: {entry.title}</h1>
 
-      <div>
-        <Link href="/">Back to Home</Link>
-      </div>
-
-      <div>
-        <Link href={`/category/${entry.category}`}>Back to {guildUtils.categoryName(entry.category)}</Link>
-      </div>
-
-      {entry.hero && (
         <div>
-          <Image src={`/assets/${entry.hero}`} alt="" height="300" width="300" />
+          <Link href="/">Back to Home</Link>
         </div>
-      )}
 
-      <div dangerouslySetInnerHTML={{ __html: entry.body.html }} />
-    </article>
+        <div>
+          <Link href={`/category/${entry.category}`}>Back to {categoryName(entry.category)}</Link>
+        </div>
+
+        {entry.hero && (
+          <div>
+            <Image src={`/assets/${entry.hero}`} alt="" height="300" width="300" />
+          </div>
+        )}
+
+        <div dangerouslySetInnerHTML={{ __html: entry.body.html }} />
+
+        <nav id="entry-navigation" aria-label="Previous and next entries">
+          <ul>
+            {previousEntry && <EntryNav entry={previousEntry} direction="Previous" />}
+            {nextEntry && <EntryNav entry={nextEntry} direction="Next" />}
+          </ul>
+        </nav>
+      </article>
+    </>
   )
 }
-
-export default EntryLayout

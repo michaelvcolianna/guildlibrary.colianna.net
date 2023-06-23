@@ -1,9 +1,17 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { allEntries, Entry } from 'contentlayer/generated'
-import guildUtils from '@/app/utils'
+import { categoryName } from '@/app/utils'
 
-function EntryCard(entry: Entry) {
+// @var string[]
+type CardProps = {
+  entry: Entry
+}
+
+// @var componentObject
+const EntryCard: React.FC<CardProps> = (props) => {
+  const { entry } = props
+
   return (
     <div>
       <h2>
@@ -21,28 +29,29 @@ function EntryCard(entry: Entry) {
   )
 }
 
-const CategoryPage = ({ params }: {
+export default function CategoryPage({
+  params
+}: {
   params: {
     category: string
   }
-}) => {
-  const entries = allEntries.filter(entry => {
-    return entry.category === params.category
-  }).sort((a, b) => a.ordering - b.ordering)
+}) {
+  // Create thhe filtered & sorted list of entries for this category
+  const entries = allEntries
+    .filter(entry => entry.category === params.category)
+    .sort((a, b) => a.ordering - b.ordering)
 
   return (
-    <div>
-      <h1>Category Page: {guildUtils.categoryName(params.category)}</h1>
+    <>
+      <h1>Category Page: {categoryName(params.category)}</h1>
 
       <div>
         <Link href="/">Back to Home</Link>
       </div>
 
       {entries.map((entry, idx) => (
-        <EntryCard key={idx} {...entry} />
+        <EntryCard key={idx} entry={entry} />
       ))}
-    </div>
+    </>
   )
 }
-
-export default CategoryPage

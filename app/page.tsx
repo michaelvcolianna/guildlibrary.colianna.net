@@ -1,12 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+// @var string[]
 type CardProps = {
   href: string,
   name: string,
   image: string
 }
 
+// @var componentObject
 const CategoryCard: React.FC<CardProps> = (props) => {
   const { href, name, image } = props
 
@@ -18,9 +20,9 @@ const CategoryCard: React.FC<CardProps> = (props) => {
   </li>
 }
 
-const HomePage = () => {
+export default function HomePage() {
   return (
-    <div>
+    <>
       <h1>Home Page</h1>
 
       <ul>
@@ -66,8 +68,6 @@ const HomePage = () => {
           image="tech-futurism"
         />
       </ul>
-    </div>
+    </>
   )
 }
-
-export default HomePage
