@@ -11,4 +11,4 @@ spoilers:
 created_at: 2023-05-21T21:51:20+00:00
 updated_at: 2023-06-02T02:51:24+00:00
 ---
-People who arrived on [Tessyas](/category/planets-cities/tessyas), claiming to be from the [Three Empires](/categories/organizations/three-empires). The Visitors are working to re-integrate the people of Tessyas with the rest of humanity.
+People who arrived on [Tessyas](/category/planets-cities/tessyas), claiming to be from the [Three Empires](/category/organizations/three-empires). The Visitors are working to re-integrate the people of Tessyas with the rest of humanity.

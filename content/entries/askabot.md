@@ -12,4 +12,4 @@ spoilers:
 created_at: 2023-05-21T21:51:20+00:00
 updated_at: 2023-06-02T02:51:24+00:00
 ---
-A ship built by an unknown company, sketched by [Cat](/categories/characters/cat). The ship is most noted for its triangular shape, counter to the spherical shape of all other ships.
+A ship built by an unknown company, sketched by [Cat](/category/characters/cat). The ship is most noted for its triangular shape, counter to the spherical shape of all other ships.
