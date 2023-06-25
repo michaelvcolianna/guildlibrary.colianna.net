@@ -1,9 +1,40 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { allEntries, Entry } from 'contentlayer/generated'
-import { categoryName } from '@/app/utils'
+import { categoryList } from '@/app/categories'
 
 // @todo: Swap title/content iteratively if needed using entry.spoilers.
+
+// @var string[]
+type CatProps = {
+  href: string,
+  name: string,
+  image: string
+}
+
+/**
+ * Retrieve the category specified in the URL.
+ *
+ * @param  object  params
+ * @return CatProps
+ */
+function getCategory(
+  params: {
+    category: string
+  }
+): CatProps {
+  // Get the category information
+  const category = categoryList.find(
+    category => category.image === params.category
+  )
+
+  // Handle a non-existent category
+  if(!category) {
+    throw new Error(`Category not found for slug: ${params.category}`)
+  }
+
+  return category
+}
 
 /**
  * Retrieve the entry specified in the URL.
@@ -21,7 +52,7 @@ function getEntry(
 ): Entry {
   // Can't try/catch, so first search the entries list
   let possibleEntry = allEntries.find(
-    (entry) =>
+    entry =>
       entry.category === params.category
       &&
       entry._raw.flattenedPath === params.slug
@@ -53,7 +84,7 @@ function getAdjacentEntry(
   direction: Direction
 ): Entry|undefined {
   return allEntries.find(
-    (adjacent) =>
+    adjacent =>
       adjacent.category === entry.category
       &&
       adjacent.ordering === entry.ordering + direction
@@ -80,22 +111,26 @@ const EntryNav: React.FC<NavProps> = (props) => {
 }
 
 // Get the values from the URL
-export const generateStaticParams = async () => allEntries.map((entry) => ({
+export const generateStaticParams = async () => allEntries.map(entry => ({
   category: entry.category,
   slug: entry._raw.flattenedPath
 }))
 
 // For the tab/window title
-export const generateMetadata = ({ params }: {
-  params: {
-    category: string,
-    slug: string
+export const generateMetadata = (
+  { params }:
+  {
+    params: {
+      category: string,
+      slug: string
+    }
   }
-}) => {
+) => {
   const entry = getEntry(params)
 
   return {
-    title: `Entry: ${entry.title}`
+    title: `Entry: ${entry.title} | The Guild Library Appendix`,
+    description: entry.excerpt
   }
 }
 
@@ -107,6 +142,7 @@ export default function EntryLayout({
     slug: string
   }
 }) {
+  const category = getCategory(params)
   const entry = getEntry(params)
   const previousEntry = getAdjacentEntry(entry, Direction.Previous)
   const nextEntry = getAdjacentEntry(entry, Direction.Next)
@@ -121,21 +157,33 @@ export default function EntryLayout({
         </div>
 
         <div>
-          <Link href={`/category/${entry.category}`}>Back to {categoryName(entry.category)}</Link>
+          <Link href={`/category/${entry.category}`}>
+            Back to {category.name}
+          </Link>
         </div>
 
         {entry.hero && (
           <div>
-            <Image src={`/assets/${entry.hero}`} alt="" height="300" width="300" />
+            <Image
+              src={`/assets/${entry.hero}`}
+              alt=""
+              height="300"
+              width="300"
+            />
           </div>
         )}
 
         <div dangerouslySetInnerHTML={{ __html: entry.body.html }} />
 
-        <nav id="entry-navigation" aria-label="Previous and next entries">
+        <nav aria-label="Previous and next entries">
           <ul>
-            {previousEntry && <EntryNav entry={previousEntry} direction="Previous" />}
-            {nextEntry && <EntryNav entry={nextEntry} direction="Next" />}
+            {previousEntry && (
+              <EntryNav entry={previousEntry} direction="Previous" />
+            )}
+
+            {nextEntry && (
+              <EntryNav entry={nextEntry} direction="Next" />
+            )}
           </ul>
         </nav>
       </article>

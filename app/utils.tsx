@@ -4,6 +4,8 @@
  * Splits the kebab string by dash, capitalizes the first character of each
  * element in the resulting array, then joins them with a slash.
  *
+ * @todo Maybe not needed any more?
+ *
  * @param  string  name
  * @return string
  */

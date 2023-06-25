@@ -3,6 +3,7 @@
 }
 
 /* Temporary styles */
+ol,
 ul {
   display: grid;
   gap: 1rem;

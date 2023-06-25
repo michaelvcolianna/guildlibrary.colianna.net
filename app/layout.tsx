@@ -1,26 +1,33 @@
+import Link from 'next/link'
+import { categoryList } from '@/app/categories'
+
 import './globals.css'
 
-export const metadata = {
-  title: 'The Guild Library',
-  description: '...',
-}
-
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout(
+  { children }:
+  { children: React.ReactNode }
+) {
   return (
     <html lang="en">
       <body>
         <a href="#content">Skip to content</a>
 
         <header>
-          <strong>The Guild Library Appendix</strong>
+          <Link href="/">
+            <strong>The Guild Library Appendix</strong>
+          </Link>
 
-          <p>
-            <em>Some descriptive copy will eventually go here. Maybe navigation too?</em>
-          </p>
+          <nav aria-labelledby="label-categories">
+            <span id="label-categories">Categories:</span>
+
+            <ul>
+              {categoryList.map((category, idx) => (
+                <li key={idx}>
+                  <Link href={category.href}>{category.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </header>
 
         <main id="content">

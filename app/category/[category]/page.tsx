@@ -1,57 +1,86 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { allEntries, Entry } from 'contentlayer/generated'
-import { categoryName } from '@/app/utils'
+import { allEntries } from 'contentlayer/generated'
+import { categoryList } from '@/app/categories'
 
-// @var string[]
-type CardProps = {
-  entry: Entry
-}
-
-// @var componentObject
-const EntryCard: React.FC<CardProps> = (props) => {
-  const { entry } = props
-
-  return (
-    <div>
-      <h2>
-        <Link href={entry.url}>{entry.title}</Link>
-      </h2>
-
-      <div>
-        <Image src={entry.hero ? `/assets/${entry.hero}` : '/assets/unknown.jpg'} alt="" height="64" width="64" />
-      </div>
-
-      <div>
-        {entry.excerpt}
-      </div>
-    </div>
-  )
-}
-
-export default function CategoryPage({
-  params
-}: {
-  params: {
-    category: string
+// For the tab/window title
+export const generateMetadata = (
+  { params }:
+  {
+    params: {
+      category: string
+    }
   }
-}) {
-  // Create thhe filtered & sorted list of entries for this category
+) => {
+  // Get the category information
+  const category = categoryList.find(
+    category => category.image === params.category
+  )
+
+  // Handle a non-existent category
+  if(!category) {
+    throw new Error(`Category not found for slug: ${params.category}`)
+  }
+
+  return {
+    title: `Category: ${category.name} | The Guild Library Appendix`,
+    description: category.description
+  }
+}
+
+export default function CategoryPage(
+  { params }:
+  {
+    params: {
+      category: string
+    }
+  }
+) {
+  // Get the category information
+  const category = categoryList.find(
+    category => category.image === params.category
+  )
+
+  // Handle a non-existent category
+  if(!category) {
+    throw new Error(`Category not found for slug: ${params.category}`)
+  }
+
+  // Create the filtered & sorted list of entries for this category
   const entries = allEntries
     .filter(entry => entry.category === params.category)
     .sort((a, b) => a.ordering - b.ordering)
 
   return (
     <>
-      <h1>Category Page: {categoryName(params.category)}</h1>
+      <h1>Category Page: {category.name}</h1>
 
       <div>
         <Link href="/">Back to Home</Link>
       </div>
 
-      {entries.map((entry, idx) => (
-        <EntryCard key={idx} entry={entry} />
-      ))}
+      <ol>
+        {entries.map((entry, idx) => (
+          <li key={idx}>
+            <h2>
+              <Link href={entry.url}>{entry.title}</Link>
+            </h2>
+
+            <div>
+              <Image
+                src={`/assets/${entry.hero ?? 'unknown.jpg'}`}
+                alt=""
+                height="64"
+                width="64"
+              />
+            </div>
+
+            <div>
+              {entry.excerpt}
+            </div>
+          </li>
+        ))}
+      </ol>
     </>
   )
 }
