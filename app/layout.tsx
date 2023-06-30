@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { categoryList } from '@/app/categories'
+import NavLink from '@/app/nav-link'
 
-import './globals.css'
+import '@/app/globals.scss'
 
 export default function RootLayout(
   { children }:
@@ -10,20 +11,20 @@ export default function RootLayout(
   return (
     <html lang="en">
       <body>
-        <a href="#content">Skip to content</a>
+        <Link href="#content">Skip to content</Link>
 
         <header>
-          <Link href="/">
+          <NavLink href="/">
             <strong>The Guild Library Appendix</strong>
-          </Link>
+          </NavLink>
 
           <nav aria-labelledby="label-categories">
-            <span id="label-categories">Categories:</span>
+            <div id="label-categories">Categories:</div>
 
             <ul>
               {categoryList.map((category, idx) => (
                 <li key={idx}>
-                  <Link href={category.href}>{category.name}</Link>
+                  <NavLink href={category.href}>{category.name}</NavLink>
                 </li>
               ))}
             </ul>
