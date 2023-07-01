@@ -1,13 +1,18 @@
 import Link from 'next/link'
-import { categoryList } from '@/app/categories'
+import { categoryList, makeUrl } from '@/app/categories'
 import NavLink from '@/app/nav-link'
+import ExternalLink from '@/app/external-link'
 
 import '@/app/globals.scss'
 
+// @return ReactNode
 export default function RootLayout(
   { children }:
   { children: React.ReactNode }
 ) {
+  // This is purely an aesthetic choice
+  const currentYear = new Date().getFullYear()
+
   return (
     <html lang="en">
       <body>
@@ -24,7 +29,9 @@ export default function RootLayout(
             <ul>
               {categoryList.map((category, idx) => (
                 <li key={idx}>
-                  <NavLink href={category.href}>{category.name}</NavLink>
+                  <NavLink href={makeUrl(category.slug)}>
+                    {category.name}
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -36,7 +43,11 @@ export default function RootLayout(
         </main>
 
         <footer>
-          &copy; 2020-{new Date().getFullYear()} by <a href="https://colianna.net/stories">Michael V. Colianna <span>(opens an external site)</span></a>
+          &copy; 2020-{currentYear} by
+          {"\n"}
+          <ExternalLink href="https://colianna.net/stories">
+            Michael V. Colianna
+          </ExternalLink>
         </footer>
       </body>
     </html>

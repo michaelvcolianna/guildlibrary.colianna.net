@@ -1,12 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { categoryList } from '@/app/categories'
+import { categoryList, makeUrl, makeSrc } from '@/app/categories'
 
+// @var string[]
 export const metadata = {
   title: 'The Guild Library Appendix',
   description: 'The home page for the Guild Library Appendix, with a list of categories',
 }
 
+// @return ReactNode
 export default function HomePage() {
   return (
     <>
@@ -19,11 +21,11 @@ export default function HomePage() {
       <ul>
         {categoryList.map((category, idx) => (
           <li key={idx}>
-            <Link href={category.href}>
+            <Link href={makeUrl(category.slug)}>
               <div>{category.name}</div>
 
               <Image
-                src={`/assets/categories/${category.image}.jpg`}
+                src={makeSrc(category.slug)}
                 alt=""
                 height="300"
                 width="550"

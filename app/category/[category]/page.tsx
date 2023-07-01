@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import Link from 'next/link'
+import EntryCard from '@/app/entry-card'
 import { allEntries } from 'contentlayer/generated'
-import { categoryList } from '@/app/categories'
+import { getCategory } from '@/app/categories'
 
 // For the tab/window title
 export const generateMetadata = (
@@ -12,22 +12,15 @@ export const generateMetadata = (
     }
   }
 ) => {
-  // Get the category information
-  const category = categoryList.find(
-    category => category.image === params.category
-  )
-
-  // Handle a non-existent category
-  if(!category) {
-    throw new Error(`Category not found for slug: ${params.category}`)
-  }
+  const { name, description } = getCategory(params.category)
 
   return {
-    title: `Category: ${category.name} | The Guild Library Appendix`,
-    description: category.description
+    title: `Category: ${name} | The Guild Library Appendix`,
+    description: description
   }
 }
 
+// @return ReactNode
 export default function CategoryPage(
   { params }:
   {
@@ -36,24 +29,17 @@ export default function CategoryPage(
     }
   }
 ) {
-  // Get the category information
-  const category = categoryList.find(
-    category => category.image === params.category
-  )
-
-  // Handle a non-existent category
-  if(!category) {
-    throw new Error(`Category not found for slug: ${params.category}`)
-  }
+  const { category: categorySlug } = params
+  const { name } = getCategory(categorySlug)
 
   // Create the filtered & sorted list of entries for this category
   const entries = allEntries
-    .filter(entry => entry.category === params.category)
+    .filter(entry => entry.category === categorySlug)
     .sort((a, b) => a.ordering - b.ordering)
 
   return (
     <>
-      <h1>Category Page: {category.name}</h1>
+      <h1>Category Page: {name}</h1>
 
       <div>
         <Link href="/">Back to Home</Link>
@@ -61,24 +47,7 @@ export default function CategoryPage(
 
       <ol>
         {entries.map((entry, idx) => (
-          <li key={idx}>
-            <h2>
-              <Link href={entry.url}>{entry.title}</Link>
-            </h2>
-
-            <div>
-              <Image
-                src={`/assets/${entry.hero ?? 'unknown.jpg'}`}
-                alt=""
-                height="64"
-                width="64"
-              />
-            </div>
-
-            <div>
-              {entry.excerpt}
-            </div>
-          </li>
+          <EntryCard key={idx} entry={entry} />
         ))}
       </ol>
     </>
