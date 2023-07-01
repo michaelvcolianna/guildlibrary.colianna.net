@@ -1,6 +1,5 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { categoryList, makeUrl, makeSrc } from '@/app/categories'
+import CategoryCard from '@/app/category-card'
+import { categoryList } from '@/app/categories'
 
 // @var string[]
 export const metadata = {
@@ -20,18 +19,7 @@ export default function HomePage() {
 
       <ul>
         {categoryList.map((category, idx) => (
-          <li key={idx}>
-            <Link href={makeUrl(category.slug)}>
-              <div>{category.name}</div>
-
-              <Image
-                src={makeSrc(category.slug)}
-                alt=""
-                height="300"
-                width="550"
-              />
-            </Link>
-          </li>
+          <CategoryCard key={idx} category={category} />
         ))}
       </ul>
     </>
