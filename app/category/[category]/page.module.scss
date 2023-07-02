@@ -1,14 +1,13 @@
-.home {
+.category {
   h1,
-  p,
-  ul {
+  ol {
     margin: 0;
   }
 
-  ul {
+  ol {
     display: grid;
     gap: 1rem;
-    grid-template-columns: var(--home-grid-columns);
+    grid-template-columns: var(--category-grid-columns);
     list-style: none;
     padding: 0;
   }

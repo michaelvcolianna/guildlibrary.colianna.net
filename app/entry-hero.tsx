@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import styles from '@/app/entry-hero.module.scss'
 
 /**
  * Entry card list item.
@@ -11,7 +12,7 @@ export default function EntryHero(
   { hero: string|undefined }
 ) {
   return (
-    <div>
+    <div className={styles.image}>
       <Image
         src={`/assets/${hero ?? 'unknown.jpg'}`}
         alt=""

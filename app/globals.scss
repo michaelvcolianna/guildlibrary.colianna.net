@@ -18,6 +18,9 @@
   // @page.module.scss
   --home-grid-columns: 1fr;
 
+  // @category/[category]/page.module.scss
+  --category-grid-columns: 1fr;
+
   @media (prefers-reduced-motion: no-preference) {
     --tx-duration: 195ms;
   }
@@ -38,6 +41,9 @@
 
     // @page.module.scss
     --home-grid-columns: repeat(2, 1fr);
+
+    // @category/[category]/page.module.scss
+    --category-grid-columns: repeat(2, 1fr);
   }
 }
 
@@ -94,6 +100,11 @@ svg {
 .inner {
   margin: auto;
   max-width: var(--max-width);
+
+  #content & {
+    display: grid;
+    gap: 1rem;
+  }
 }
 
 header {
