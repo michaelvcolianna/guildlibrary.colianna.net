@@ -4,17 +4,19 @@
   --color-background: white;
   --color-foreground: black;
   --color-links: blue;
-
+  --max-width: 550px;
   --nav-align: center;
+  --nav-gap: 1rem;
   --nav-justification: space-between;
+  --nav-padding: 0 1rem;
   --nav-width: 650px;
-
   --size-touchable: 3rem;
-
   --title-justification: center;
-
   --tx-duration: 0;
   --tx-function: ease-in-out;
+
+  // @page.module.scss
+  --home-grid-columns: 1fr;
 
   @media (prefers-reduced-motion: no-preference) {
     --tx-duration: 195ms;
@@ -25,11 +27,25 @@
   }
 
   @media (min-width: 989px) {
+    --max-width: 1116px;
     --nav-align: left;
+    --nav-gap: 2rem;
     --nav-justification: flex-start;
+    --nav-padding: 0;
     --nav-width: auto;
     --size-touchable: none;
     --title-justification: flex-start;
+
+    // @page.module.scss
+    --home-grid-columns: repeat(2, 1fr);
+  }
+}
+
+* {
+  &,
+  &::after,
+  &::before {
+    box-sizing: border-box;
   }
 }
 
@@ -68,28 +84,37 @@ a[href="#content"] {
   }
 }
 
-img {
+img,
+svg {
   display: inline-block;
   height: auto;
   max-width: 100%;
 }
 
+.inner {
+  margin: auto;
+  max-width: var(--max-width);
+}
+
 header {
   background-color: var(--color-foreground);
   color: var(--color-background);
-  display: grid;
-  gap: 1rem;
   padding: 1rem;
 
-  & > a {
-    @include touchable;
-    align-items: center;
-    display: flex;
-    font-size: 1.25rem;
-    justify-content: var(--title-justification);
+  .inner {
+    display: grid;
+    gap: 1rem;
 
-    @include link-variants {
-      color: var(--color-background);
+    & > a {
+      @include touchable;
+      align-items: center;
+      display: flex;
+      font-size: 1.25rem;
+      justify-content: var(--title-justification);
+
+      @include link-variants {
+        color: var(--color-background);
+      }
     }
   }
 
@@ -105,7 +130,7 @@ header {
     ul {
       display: flex;
       flex-flow: row wrap;
-      gap: 1rem;
+      gap: var(--nav-gap);
       justify-content: var(--nav-justification);
       list-style: none;
       margin: auto;
@@ -117,7 +142,7 @@ header {
       @include touchable;
       align-items: center;
       display: flex;
-      padding: 0 1rem;
+      padding: var(--nav-padding);
 
       @include link-variants {
         color: var(--color-background);
@@ -126,13 +151,16 @@ header {
   }
 }
 
+main {
+  padding: 1rem;
+}
+
 footer {
   padding: 1rem;
 }
 
 .external-link {
   svg {
-    display: inline-block;
     height: 1rem;
     margin-left: 0.25rem;
     vertical-align: text-top;

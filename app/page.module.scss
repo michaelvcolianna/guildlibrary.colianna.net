@@ -1,0 +1,18 @@
+.home {
+  display: grid;
+  gap: 1rem;
+
+  h1,
+  p,
+  ul {
+    margin: 0;
+  }
+
+  ul {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: var(--home-grid-columns);
+    list-style: none;
+    padding: 0;
+  }
+}
