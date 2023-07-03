@@ -12,7 +12,7 @@ export default function EntryHero(
   { hero, dimension = 64 }:
   {
     hero: string|undefined,
-    dimension: number
+    dimension?: number
   }
 ) {
   const style = {
