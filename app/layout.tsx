@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { categoryList, makeUrl } from '@/app/categories'
 import NavLink from '@/app/nav-link'
 import ExternalLink from '@/app/external-link'
-import '@/app/globals.scss'
+import '@/app/globals.css'
 
 // @return ReactNode
 export default function RootLayout(
@@ -18,7 +18,7 @@ export default function RootLayout(
         <Link href="#content">Skip to content</Link>
 
         <header>
-          <div className="inner">
+          <div>
             <NavLink href="/">
               <strong>The Guild Library Appendix</strong>
             </NavLink>
@@ -44,7 +44,7 @@ export default function RootLayout(
         </main>
 
         <footer>
-          <div className="inner">
+          <div>
             &copy; 2020-{currentYear} by
             {"\n"}
             <ExternalLink href="https://colianna.net/stories">

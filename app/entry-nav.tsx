@@ -17,10 +17,9 @@ export default function EntryNav(
   }
 ) {
   const { url, title } = entry
-  const style = styles[`link--${direction}`]
 
   return (
-    <li className={`${styles.link} ${style}`}>
+    <li>
       <strong>{direction}</strong>
 
       <Link href={url}>{title}</Link>

@@ -1,6 +1,5 @@
 import CategoryCard from '@/app/category-card'
 import { categoryList } from '@/app/categories'
-import styles from '@/app/page.module.scss'
 
 // @var string[]
 export const metadata = {
@@ -11,7 +10,7 @@ export const metadata = {
 // @return ReactNode
 export default function HomePage() {
   return (
-    <div className={`inner ${styles.home}`}>
+    <div>
       <h1>Home Page</h1>
 
       <p>

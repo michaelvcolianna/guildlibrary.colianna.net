@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import styles from '@/app/entry-hero.module.scss'
 
 /**
  * Entry card list item.
@@ -15,12 +14,8 @@ export default function EntryHero(
     dimension?: number
   }
 ) {
-  const style = {
-    '--hero-border-radius': `${dimension}px`
-  } as React.CSSProperties
-
   return (
-    <div className={styles.image} style={style}>
+    <div>
       <Image
         src={`/assets/${hero ?? 'unknown.jpg'}`}
         alt=""

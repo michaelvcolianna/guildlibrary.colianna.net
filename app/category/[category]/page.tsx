@@ -2,7 +2,6 @@ import BackLink from '@/app/back-link'
 import EntryCard from '@/app/entry-card'
 import { allEntries } from 'contentlayer/generated'
 import { getCategory } from '@/app/categories'
-import styles from '@/app/category/[category]/page.module.scss'
 
 // For the tab/window title
 export const generateMetadata = (
@@ -40,11 +39,11 @@ export default function CategoryPage(
 
   return (
     <>
-      <div className="page-nav">
+      <div>
         <BackLink href="/">Back to Home</BackLink>
       </div>
 
-      <div className={`inner ${styles.category}`}>
+      <div>
         <h1>Category Page: {name}</h1>
 
         <ol>

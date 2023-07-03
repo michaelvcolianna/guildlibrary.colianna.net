@@ -4,7 +4,6 @@ import EntryHero from '@/app/entry-hero'
 import { allEntries } from 'contentlayer/generated'
 import { getCategory, makeUrl } from '@/app/categories'
 import { getEntryWithAdjacent } from '@/app/entries'
-import styles from '@/app/category/[category]/[slug]/page.module.scss'
 
 // @todo: Swap title/content iteratively if needed using entry.spoilers.
 
@@ -66,7 +65,7 @@ export default function EntryLayout({
 
   return (
     <>
-      <div className="page-nav">
+      <div>
           <BackLink href="/">Back to Home</BackLink>
 
           <BackLink href={makeUrl(categorySlug)}>
@@ -74,7 +73,7 @@ export default function EntryLayout({
           </BackLink>
       </div>
 
-      <article className={`inner ${styles.entry}`}>
+      <article>
         <h1>
           <small>Entry</small>
           <span>{title}</span>
@@ -85,7 +84,7 @@ export default function EntryLayout({
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </article>
 
-      <nav aria-label="Previous and next entries" className={styles.adjacent}>
+      <nav aria-label="Previous and next entries">
         <ul>
           {previousEntry
             ? <EntryNav entry={previousEntry} direction="Previous" />
