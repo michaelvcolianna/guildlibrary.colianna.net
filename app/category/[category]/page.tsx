@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import BackLink from '@/app/back-link'
 import EntryCard from '@/app/entry-card'
 import { allEntries } from 'contentlayer/generated'
 import { getCategory } from '@/app/categories'
@@ -39,18 +39,20 @@ export default function CategoryPage(
     .sort((a, b) => a.ordering - b.ordering)
 
   return (
-    <div className={`inner ${styles.category}`}>
-      <h1>Category Page: {name}</h1>
-
-      <div>
-        <Link href="/">Back to Home</Link>
+    <>
+      <div className="page-nav">
+        <BackLink href="/">Back to Home</BackLink>
       </div>
 
-      <ol>
-        {entries.map((entry, idx) => (
-          <EntryCard key={idx} entry={entry} />
-        ))}
-      </ol>
-    </div>
+      <div className={`inner ${styles.category}`}>
+        <h1>Category Page: {name}</h1>
+
+        <ol>
+          {entries.map((entry, idx) => (
+            <EntryCard key={idx} entry={entry} />
+          ))}
+        </ol>
+      </div>
+    </>
   )
 }

@@ -52,6 +52,8 @@ export default function RootLayout(
             </ExternalLink>
           </div>
         </footer>
+
+        <span dangerouslySetInnerHTML={{ __html: `<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->` }} />
       </body>
     </html>
   )

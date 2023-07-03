@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Entry } from 'contentlayer/generated'
+import styles from '@/app/entry-nav.module.scss'
 
 /**
  * Entry previous/next navigation.
@@ -16,10 +17,11 @@ export default function EntryNav(
   }
 ) {
   const { url, title } = entry
+  const style = styles[`link--${direction}`]
 
   return (
-    <li>
-      <strong>{direction}:</strong>
+    <li className={`${styles.link} ${style}`}>
+      <strong>{direction}</strong>
 
       <Link href={url}>{title}</Link>
     </li>

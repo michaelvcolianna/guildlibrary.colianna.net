@@ -1,9 +1,10 @@
-import Link from 'next/link'
+import BackLink from '@/app/back-link'
 import EntryNav from '@/app/entry-nav'
 import EntryHero from '@/app/entry-hero'
 import { allEntries } from 'contentlayer/generated'
 import { getCategory, makeUrl } from '@/app/categories'
 import { getEntryWithAdjacent } from '@/app/entries'
+import styles from '@/app/category/[category]/[slug]/page.module.scss'
 
 // @todo: Swap title/content iteratively if needed using entry.spoilers.
 
@@ -65,35 +66,38 @@ export default function EntryLayout({
 
   return (
     <>
-      <article>
-        <h1>Entry: {title}</h1>
+      <div className="page-nav">
+          <BackLink href="/">Back to Home</BackLink>
 
-        <div>
-          <Link href="/">Back to Home</Link>
-        </div>
-
-        <div>
-          <Link href={makeUrl(categorySlug)}>
+          <BackLink href={makeUrl(categorySlug)}>
             Back to {categoryName}
-          </Link>
-        </div>
+          </BackLink>
+      </div>
 
-        {hero && <EntryHero hero={hero} />}
+      <article className={`inner ${styles.entry}`}>
+        <h1>
+          <small>Entry</small>
+          <span>{title}</span>
+        </h1>
+
+        {hero && <EntryHero hero={hero} dimension={256} />}
 
         <div dangerouslySetInnerHTML={{ __html: html }} />
-
-        <nav aria-label="Previous and next entries">
-          <ul>
-            {previousEntry && (
-              <EntryNav entry={previousEntry} direction="Previous" />
-            )}
-
-            {nextEntry && (
-              <EntryNav entry={nextEntry} direction="Next" />
-            )}
-          </ul>
-        </nav>
       </article>
+
+      <nav aria-label="Previous and next entries" className={styles.adjacent}>
+        <ul>
+          {previousEntry
+            ? <EntryNav entry={previousEntry} direction="Previous" />
+            : <li></li>
+          }
+
+          {nextEntry
+            ? <EntryNav entry={nextEntry} direction="Next" />
+            : <li></li>
+          }
+        </ul>
+      </nav>
     </>
   )
 }

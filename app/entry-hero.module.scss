@@ -1,6 +1,6 @@
 .image {
   img {
     border: 2px solid var(--color-foreground);
-    border-radius: 64px;
+    border-radius: var(--hero-border-radius);
   }
 }
