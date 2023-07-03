@@ -4,7 +4,11 @@ module.exports = {
     './app/**/*.tsx'
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-space-grotesk)']
+      }
+    },
   },
   plugins: [],
 }

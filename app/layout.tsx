@@ -2,7 +2,14 @@ import Link from 'next/link'
 import { categoryList, makeUrl } from '@/app/categories'
 import NavLink from '@/app/nav-link'
 import ExternalLink from '@/app/external-link'
+import { Space_Grotesk } from 'next/font/google'
 import '@/app/globals.css'
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-space-grotesk'
+})
 
 // @return ReactNode
 export default function RootLayout(
@@ -13,8 +20,8 @@ export default function RootLayout(
   const currentYear = new Date().getFullYear()
 
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={spaceGrotesk.variable}>
+      <body className="font-sans">
         <Link href="#content">Skip to content</Link>
 
         <header>
