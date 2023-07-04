@@ -21,8 +21,13 @@ export default function RootLayout(
 
   return (
     <html lang="en" className={spaceGrotesk.variable}>
-      <body className="font-sans">
-        <Link href="#content">Skip to content</Link>
+      <body className="bg-white text-black font-sans">
+        <Link
+          href="#content"
+          className="items-center bg-white border flex h-12 left-4 px-12 fixed -translate-y-16 focus:translate-y-4 motion-safe:transition-transform"
+        >
+          Skip to content
+        </Link>
 
         <header>
           <div>
