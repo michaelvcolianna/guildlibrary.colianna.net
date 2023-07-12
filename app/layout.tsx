@@ -1,9 +1,11 @@
-import Link from 'next/link'
-import { categoryList, makeUrl } from '@/app/categories'
-import NavLink from '@/app/nav-link'
 import ExternalLink from '@/app/external-link'
 import Inner from '@/app/inner'
+import Link from 'next/link'
+import NavLink from '@/app/nav-link'
+
+import { categoryList, makeUrl } from '@/app/categories'
 import { Space_Grotesk } from 'next/font/google'
+
 import '@/app/globals.css'
 
 const spaceGrotesk = Space_Grotesk({

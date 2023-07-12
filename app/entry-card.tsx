@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import EntryHero from '@/app/entry-hero'
+import Link from 'next/link'
+
 import { Entry } from 'contentlayer/generated'
 
 /**

@@ -1,9 +1,10 @@
 import BackLink from '@/app/back-link'
 import Breadcrumbs from '@/app/breadcrumbs'
-import EntryNav from '@/app/entry-nav'
 import EntryHero from '@/app/entry-hero'
+import EntryNav from '@/app/entry-nav'
 import Inner from '@/app/inner'
 import PageHeading from '@/app/page-heading'
+
 import { allEntries } from 'contentlayer/generated'
 import { getCategory, makeUrl } from '@/app/categories'
 import { getEntryWithAdjacent } from '@/app/entries'

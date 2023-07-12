@@ -1,6 +1,7 @@
 import CategoryCard from '@/app/category-card'
 import Inner from '@/app/inner'
 import PageHeading from '@/app/page-heading'
+
 import { categoryList } from '@/app/categories'
 
 // @var string[]

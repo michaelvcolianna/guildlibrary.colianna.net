@@ -3,6 +3,7 @@ import Breadcrumbs from '@/app/breadcrumbs'
 import EntryCard from '@/app/entry-card'
 import Inner from '@/app/inner'
 import PageHeading from '@/app/page-heading'
+
 import { allEntries } from 'contentlayer/generated'
 import { getCategory } from '@/app/categories'
 
