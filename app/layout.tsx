@@ -61,7 +61,7 @@ export default function RootLayout(
           {children}
         </main>
 
-        <footer className="bg-black text-white p-6">
+        <footer className="p-6">
           <Inner>
             &copy; 2020-{currentYear} by
             {"\n"}
