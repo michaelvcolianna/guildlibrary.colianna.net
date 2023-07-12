@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { categoryList, makeUrl } from '@/app/categories'
 import NavLink from '@/app/nav-link'
 import ExternalLink from '@/app/external-link'
+import Inner from '@/app/inner'
 import { Space_Grotesk } from 'next/font/google'
 import '@/app/globals.css'
 
@@ -29,40 +30,43 @@ export default function RootLayout(
           Skip to content
         </Link>
 
-        <header>
-          <div>
-            <NavLink href="/">
+        <header className="bg-black text-white p-6">
+          <Inner>
+            <NavLink href="/" classes="text-xl">
               <strong>The Guild Library Appendix</strong>
             </NavLink>
 
-            <nav aria-labelledby="label-categories">
-              <div id="label-categories">Categories:</div>
+            <nav aria-labelledby="label-categories" className="mt-6">
+              <div className="sr-only" id="label-categories">Categories:</div>
 
-              <ul>
+              <ul className="flex flex-wrap gap-6">
                 {categoryList.map((category, idx) => (
                   <li key={idx}>
-                    <NavLink href={makeUrl(category.slug)}>
+                    <NavLink
+                      href={makeUrl(category.slug)}
+                      classes="underline"
+                    >
                       {category.name}
                     </NavLink>
                   </li>
                 ))}
               </ul>
             </nav>
-          </div>
+          </Inner>
         </header>
 
         <main id="content">
           {children}
         </main>
 
-        <footer>
-          <div>
+        <footer className="bg-black text-white p-6">
+          <Inner>
             &copy; 2020-{currentYear} by
             {"\n"}
             <ExternalLink href="https://colianna.net/stories">
               Michael V. Colianna
             </ExternalLink>
-          </div>
+          </Inner>
         </footer>
 
         <span dangerouslySetInnerHTML={{ __html: `<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->` }} />

@@ -13,14 +13,16 @@ import { usePathname } from 'next/navigation'
  *
  * @param  string  href
  * @param  boolean  flagPartial
+ * @param  string  classes
  * @param  ReactNode  children
  * @return ReactNode
  */
 export default function NavLink(
-  { href, flagPartial = true, children }:
+  { href, flagPartial = true, classes = undefined, children }:
   {
     href: string,
     flagPartial?: boolean,
+    classes?: string,
     children: React.ReactNode
   }
 ) {
@@ -31,5 +33,9 @@ export default function NavLink(
 
   const ariaCurrent = exact || (flagPartial && partial) ? 'page' : undefined
 
-  return <Link href={href} aria-current={ariaCurrent}>{children}</Link>
+  return (
+    <Link href={href} aria-current={ariaCurrent} className={classes}>
+      {children}
+    </Link>
+  )
 }

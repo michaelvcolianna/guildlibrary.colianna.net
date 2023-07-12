@@ -1,4 +1,5 @@
 import CategoryCard from '@/app/category-card'
+import Inner from '@/app/inner'
 import { categoryList } from '@/app/categories'
 
 // @var string[]
@@ -10,7 +11,7 @@ export const metadata = {
 // @return ReactNode
 export default function HomePage() {
   return (
-    <div>
+    <Inner>
       <h1>Home Page</h1>
 
       <p>
@@ -22,6 +23,6 @@ export default function HomePage() {
           <CategoryCard key={idx} category={category} />
         ))}
       </ul>
-    </div>
+    </Inner>
   )
 }
