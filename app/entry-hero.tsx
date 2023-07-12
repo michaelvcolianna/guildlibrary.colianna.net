@@ -21,6 +21,7 @@ export default function EntryHero(
         alt=""
         height={dimension}
         width={dimension}
+        className="rounded-full border-2 border-black"
       />
     </div>
   )

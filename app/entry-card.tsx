@@ -20,12 +20,12 @@ export default function EntryCard(
   { entry: Entry }
 ) {
   return (
-    <li>
+    <li className="grid gap-4 grid-cols-[64px_1fr]">
       <EntryHero hero={hero} />
 
       <div>
         <h2>
-          <Link href={url}>{title}</Link>
+          <Link className="font-bold text-lg underline" href={url}>{title}</Link>
         </h2>
 
         <div>{excerpt}</div>

@@ -1,6 +1,8 @@
 import BackLink from '@/app/back-link'
+import Breadcrumbs from '@/app/breadcrumbs'
 import EntryNav from '@/app/entry-nav'
 import EntryHero from '@/app/entry-hero'
+import Inner from '@/app/inner'
 import { allEntries } from 'contentlayer/generated'
 import { getCategory, makeUrl } from '@/app/categories'
 import { getEntryWithAdjacent } from '@/app/entries'
@@ -64,14 +66,14 @@ export default function EntryLayout({
   } = getEntryWithAdjacent(categorySlug, entrySlug)
 
   return (
-    <>
-      <div>
+    <Inner grid={true}>
+      <Breadcrumbs>
           <BackLink href="/">Back to Home</BackLink>
 
           <BackLink href={makeUrl(categorySlug)}>
             Back to {categoryName}
           </BackLink>
-      </div>
+      </Breadcrumbs>
 
       <article>
         <h1>
@@ -97,6 +99,6 @@ export default function EntryLayout({
           }
         </ul>
       </nav>
-    </>
+    </Inner>
   )
 }

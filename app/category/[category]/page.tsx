@@ -1,5 +1,8 @@
 import BackLink from '@/app/back-link'
+import Breadcrumbs from '@/app/breadcrumbs'
 import EntryCard from '@/app/entry-card'
+import Inner from '@/app/inner'
+import PageHeading from '@/app/page-heading'
 import { allEntries } from 'contentlayer/generated'
 import { getCategory } from '@/app/categories'
 
@@ -30,7 +33,7 @@ export default function CategoryPage(
   }
 ) {
   const { category: categorySlug } = params
-  const { name } = getCategory(categorySlug)
+  const { name, description } = getCategory(categorySlug)
 
   // Create the filtered & sorted list of entries for this category
   const entries = allEntries
@@ -38,20 +41,22 @@ export default function CategoryPage(
     .sort((a, b) => a.ordering - b.ordering)
 
   return (
-    <>
-      <div>
+    <Inner grid={true}>
+      <Breadcrumbs>
         <BackLink href="/">Back to Home</BackLink>
-      </div>
+      </Breadcrumbs>
 
-      <div>
-        <h1>Category Page: {name}</h1>
+      <div className="grid gap-4">
+        <PageHeading>Category Page: {name}</PageHeading>
 
-        <ol>
+        <p>{description}</p>
+
+        <ol className="grid gap-4 lg:grid-cols-2">
           {entries.map((entry, idx) => (
             <EntryCard key={idx} entry={entry} />
           ))}
         </ol>
       </div>
-    </>
+    </Inner>
   )
 }
