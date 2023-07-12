@@ -3,6 +3,7 @@ import Breadcrumbs from '@/app/breadcrumbs'
 import EntryNav from '@/app/entry-nav'
 import EntryHero from '@/app/entry-hero'
 import Inner from '@/app/inner'
+import PageHeading from '@/app/page-heading'
 import { allEntries } from 'contentlayer/generated'
 import { getCategory, makeUrl } from '@/app/categories'
 import { getEntryWithAdjacent } from '@/app/entries'
@@ -75,19 +76,22 @@ export default function EntryLayout({
           </BackLink>
       </Breadcrumbs>
 
-      <article>
-        <h1>
-          <small>Entry</small>
+      <article className="grid gap-4">
+        <PageHeading>
+          <small className="uppercase text-sm block">Entry</small>
           <span>{title}</span>
-        </h1>
+        </PageHeading>
 
         {hero && <EntryHero hero={hero} dimension={256} />}
 
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <div
+          className="prose prose-stone"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       </article>
 
       <nav aria-label="Previous and next entries">
-        <ul>
+        <ul className="grid gap-4 lg:grid-cols-2">
           {previousEntry
             ? <EntryNav entry={previousEntry} direction="Previous" />
             : <li></li>

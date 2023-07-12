@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { Entry } from 'contentlayer/generated'
-import styles from '@/app/entry-nav.module.scss'
 
 /**
  * Entry previous/next navigation.
@@ -18,11 +17,13 @@ export default function EntryNav(
 ) {
   const { url, title } = entry
 
-  return (
-    <li>
-      <strong>{direction}</strong>
+  const classNames = `grid ${direction === 'Next' ? 'justify-self-end' : ''}`
 
-      <Link href={url}>{title}</Link>
+  return (
+    <li className={classNames}>
+      <strong className="text-sm uppercase">{direction}</strong>
+
+      <Link href={url} className="underline">{title}</Link>
     </li>
   )
 }
