@@ -20,7 +20,7 @@ export default function CategoryCard(
 ) {
   return (
     <li>
-      <Link href={makeUrl(slug)} className="relative">
+      <Link href={makeUrl(slug)} className="block relative">
         <div className="absolute bottom-2 left-2 py-1 px-3 bg-white">{name}</div>
 
         <Image
