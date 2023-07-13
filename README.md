@@ -1,6 +1,6 @@
 # The Guild Library Appendix
 
-A mutable appendix for my stories.
+A mutable appendix for my stories. This was a learning project for me, so if anyone stumbles across this and has suggestions for better ways to do things, send 'em over! I try to search for best practices when I'm making something like this, and love to see what could be done differently. (Ex: I know I could probably use the Context API for my global state instead of leaning on local storage so heavily.)
 
 ## Info
 
