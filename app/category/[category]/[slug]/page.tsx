@@ -1,7 +1,9 @@
 import BackLink from '@/app/back-link'
 import Breadcrumbs from '@/app/breadcrumbs'
+import EntryContent from '@/app/entry-content'
 import EntryHero from '@/app/entry-hero'
 import EntryNav from '@/app/entry-nav'
+import EntryTitle from '@/app/entry-title'
 import Inner from '@/app/inner'
 import PageHeading from '@/app/page-heading'
 
@@ -9,15 +11,13 @@ import { allEntries } from 'contentlayer/generated'
 import { getCategory, makeUrl } from '@/app/categories'
 import { getEntryWithAdjacent } from '@/app/entries'
 
-// @todo: Swap title/content iteratively if needed using entry.spoilers.
-
 // Get the values for the entry's URL
 export const generateStaticParams = async () => allEntries.map(entry => ({
   category: entry.category,
   slug: entry._raw.flattenedPath
 }))
 
-// For the tab/window title
+// For the tab/window title (won't ever have spoilers)
 export const generateMetadata = (
   { params }:
   {
@@ -56,16 +56,13 @@ export default function EntryLayout({
   const { name: categoryName } = getCategory(categorySlug)
 
   const {
-    entry: {
-      title,
-      hero,
-      body: {
-        html
-      }
-    },
+    entry,
     previous: previousEntry,
     next: nextEntry
   } = getEntryWithAdjacent(categorySlug, entrySlug)
+
+  const { hero, title, body } = entry
+  const { html } = body
 
   return (
     <Inner grid={true}>
@@ -80,15 +77,12 @@ export default function EntryLayout({
       <article className="grid gap-4">
         <PageHeading>
           <small className="uppercase text-sm block">Entry</small>
-          <span>{title}</span>
+          <EntryTitle entry={entry} />
         </PageHeading>
 
         {hero && <EntryHero hero={hero} dimension={256} />}
 
-        <div
-          className="prose prose-stone"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <EntryContent entry={entry} />
       </article>
 
       <nav aria-label="Previous and next entries">

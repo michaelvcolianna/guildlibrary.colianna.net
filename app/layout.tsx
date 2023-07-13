@@ -5,6 +5,7 @@ import NavLink from '@/app/nav-link'
 
 import { categoryList, makeUrl } from '@/app/categories'
 import { Space_Grotesk } from 'next/font/google'
+import { SpoilerButton } from '@/app/spoiler-button'
 
 import '@/app/globals.css'
 
@@ -34,26 +35,30 @@ export default function RootLayout(
 
         <header className="bg-black text-white p-6">
           <Inner>
-            <NavLink href="/" classes="text-xl">
-              <strong>The Guild Library Appendix</strong>
-            </NavLink>
+            <div className="gap-6 flex flex-wrap justify-between">
+              <NavLink href="/" classes="text-xl">
+                <strong>The Guild Library Appendix</strong>
+              </NavLink>
 
-            <nav aria-labelledby="label-categories" className="mt-6">
-              <div className="sr-only" id="label-categories">Categories:</div>
+              <SpoilerButton />
 
-              <ul className="flex flex-wrap gap-6">
-                {categoryList.map((category, idx) => (
-                  <li key={idx}>
-                    <NavLink
-                      href={makeUrl(category.slug)}
-                      classes="underline"
-                    >
-                      {category.name}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+              <nav aria-labelledby="label-categories">
+                <div className="sr-only" id="label-categories">Categories:</div>
+
+                <ul className="flex flex-wrap gap-6">
+                  {categoryList.map((category, idx) => (
+                    <li key={idx}>
+                      <NavLink
+                        href={makeUrl(category.slug)}
+                        classes="underline"
+                      >
+                        {category.name}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
           </Inner>
         </header>
 

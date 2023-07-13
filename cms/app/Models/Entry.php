@@ -115,4 +115,22 @@ class Entry extends Model
 
         $this->save();
     }
+
+    public function hasSpoilers()
+    {
+        $has_spoilers = false;
+
+        for($i = 0; $i < 3; $i++)
+        {
+            foreach($this->spoilers[$i] as $spoiler)
+            {
+                if(filled($spoiler))
+                {
+                    $has_spoilers = true;
+                }
+            }
+        }
+
+        return $has_spoilers;
+    }
 }

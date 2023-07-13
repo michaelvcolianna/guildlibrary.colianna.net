@@ -60,3 +60,48 @@ export const getEntryWithAdjacent = (category: string, slug: string) => {
     next: getAdjacentEntry(entry, Direction.Next)
   }
 }
+
+/**
+ * Retrieve an entry's title or spoiler title.
+ *
+ * @param  Entry  entry
+ * @param  boolean  showSpoilers
+ * @return string
+ */
+export const getEntryTitle = (entry: Entry, showSpoilers: boolean) => {
+  if(showSpoilers && entry.spoilers && entry.spoilers[0].title) {
+    return entry.spoilers[0].title
+  }
+
+  return entry.title
+}
+
+/**
+ * Retrieve an entry's excerpt or spoiler excerpt.
+ *
+ * @param  Entry  entry
+ * @param  boolean  showSpoilers
+ * @return string
+ */
+export const getEntryExcerpt = (entry: Entry, showSpoilers: boolean) => {
+  if(showSpoilers && entry.spoilers && entry.spoilers[0].excerpt) {
+    return entry.spoilers[0].excerpt
+  }
+
+  return entry.excerpt
+}
+
+/**
+ * Retrieve an entry's content or spoiler content.
+ *
+ * @param  Entry  entry
+ * @param  boolean  showSpoilers
+ * @return string
+ */
+export const getEntryContent = (entry: Entry, showSpoilers: boolean) => {
+  if(showSpoilers && entry.spoilers && entry.spoilers[0].content) {
+    return entry.spoilers[0].content.html
+  }
+
+  return entry.body.html
+}

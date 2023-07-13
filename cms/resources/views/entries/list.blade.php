@@ -3,7 +3,7 @@
 
     <ul class="listing">
         @foreach($entries as $entry)
-            <li>
+            <li @class(['has-spoilers' => $entry->hasSpoilers()])>
                 <img src="{{ $entry->hero ? $entry->getHero() : asset('storage/unknown.jpg') }}" />
 
                 <a href="{{ route('entries.edit', $entry) }}">

@@ -282,11 +282,16 @@ form {
 
   li {
     background-color: white;
+    border: 2px solid white;
     border-radius: 16px;
     display: grid;
     gap: 16px;
     padding: 16px;
     width: 23%;
+
+    &.has-spoilers {
+      border-color: green;
+    }
 
     img {
       border: 2px solid var(--color-foreground);

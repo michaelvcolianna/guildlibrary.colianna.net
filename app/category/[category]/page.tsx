@@ -7,7 +7,7 @@ import PageHeading from '@/app/page-heading'
 import { allEntries } from 'contentlayer/generated'
 import { getCategory } from '@/app/categories'
 
-// For the tab/window title
+// For the tab/window title (won't ever have spoilers)
 export const generateMetadata = (
   { params }:
   {
