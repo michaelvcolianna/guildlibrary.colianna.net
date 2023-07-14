@@ -10,11 +10,13 @@ spoilers:
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
 created_at: 2023-05-21T21:51:20+00:00
-updated_at: 2023-07-13T17:21:35+00:00
+updated_at: 2023-07-14T01:36:10+00:00
 ---
 Dalya is [Davi's](/category/characters/davi) mother. She was born in 4,046 A.D. (52 years old) on Tessyas.
 
 Dalya looks similar to Hiam Abbass, with greying hair. She is an average height and weight.
+
+**Family:** [Kymball (husband)](/category/characters/kymball), [Catyrina (stepdaughter)](/category/characters/cat), Davi (son)
 
 **Pronunciation:**
 - doll’ ee yuh

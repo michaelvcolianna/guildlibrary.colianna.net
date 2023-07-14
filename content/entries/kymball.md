@@ -10,11 +10,13 @@ spoilers:
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
 created_at: 2023-05-21T21:51:20+00:00
-updated_at: 2023-07-13T17:08:38+00:00
+updated_at: 2023-07-14T01:35:15+00:00
 ---
 Kymball is [Davi's](/category/characters/davi) father. He was born in 4,043 A.D. (55 years old) on Tessyas.
 
 Kymball looks similar to Vik Sahay, with green eyes. He is fat, and is tall.
+
+**Family:** [Dalya (wife)](/category/characters/dalya), Catyrina (daughter), Davi (son)
 
 **Pronunciation:**
 - keem’ bull

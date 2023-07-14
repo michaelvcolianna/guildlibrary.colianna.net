@@ -10,11 +10,13 @@ spoilers:
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
 created_at: 2023-05-21T21:51:20+00:00
-updated_at: 2023-07-13T17:41:36+00:00
+updated_at: 2023-07-14T01:37:47+00:00
 ---
 Busreh is [Mary's](/category/characters/mary) mother, who lives on [Ur-Magad](/category/planets-cities/ur-magad).
 
 Busreh looks similar to Shobu Kapoor, with much longer hair.
+
+**Family:** [Bahadar (husband)](/category/characters/bahadar), Mary (daughter), two younger daughters
 
 **Pronunciation:**
 - boz’ ruh
