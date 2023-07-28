@@ -3,13 +3,14 @@ ordering: 1
 title: Cratton
 slug: cratton
 category: planets-cities
+hero: entries/lD8D6pBchuCG5lEnmXPVBDb5hOV0rt0ruwrPYMZo.jpg
 excerpt: 'One of the original destinations of the three ships from Earth. Cratton was settled second. It is kn...'
 spoilers:
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
 created_at: 2023-05-21T21:51:20+00:00
-updated_at: 2023-07-12T04:45:51+00:00
+updated_at: 2023-07-28T21:15:24+00:00
 ---
 One of the original destinations of the [three ships](/category/culture-history/three-ships) from [Earth](/category/culture-history/earth). Cratton was settled second. It is known mainly for its agricultural businesses but also has a rapidly-innovating medical system. Cratton has an empire of nine planets under it, their order determined by settlement date:
 

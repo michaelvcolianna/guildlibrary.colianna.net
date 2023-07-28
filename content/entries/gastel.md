@@ -3,13 +3,14 @@ ordering: 0
 title: Gastel
 slug: gastel
 category: planets-cities
+hero: entries/IEontaVPZZQ4LyERXTqMB9lntBjeqKTpqeswnmjj.jpg
 excerpt: 'One of the original destinations of the three ships from Earth. Gastel was settled first. It is know...'
 spoilers:
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
 created_at: 2023-05-21T21:51:20+00:00
-updated_at: 2023-07-12T04:44:57+00:00
+updated_at: 2023-07-28T21:15:16+00:00
 ---
 One of the original destinations of the [three ships](/category/culture-history/three-ships) from [Earth](/category/culture-history/earth). Gastel was settled first. It is known mainly for the strength and dedication of its militaries and police forces. Gastel has an empire of three planets under it, their order determined by the size of their armed forces:
 

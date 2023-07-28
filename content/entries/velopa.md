@@ -3,13 +3,14 @@ ordering: 2
 title: Velopa
 slug: velopa
 category: planets-cities
+hero: entries/7BPdD9tzwRH8tMOp2vYaECPxg9DeuOiIT79tmVK3.jpg
 excerpt: 'One of the original destinations of the three ships from Earth. Velopa was settled third. It is wher...'
 spoilers:
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
     - { title: null, content: null, excerpt: null }
 created_at: 2023-05-21T21:51:20+00:00
-updated_at: 2023-06-02T02:51:23+00:00
+updated_at: 2023-07-28T21:15:33+00:00
 ---
 One of the original destinations of the [three ships](/category/culture-history/three-ships) from [Earth](/category/culture-history/earth). Velopa was settled third. It is where [Orue](/category/tech-futurism/orue) was discovered, and currently the only known planet with the material. Velopa has an empire of fourteen planets under it, their order determined by physical size:
 
