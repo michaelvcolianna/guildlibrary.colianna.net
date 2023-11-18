@@ -60,6 +60,6 @@ export const Entry = defineDocumentType(() => ({
 }))
 
 export default makeSource({
-  contentDirPath: 'content/entries',
+  contentDirPath: '../content/entries',
   documentTypes: [Entry]
 })

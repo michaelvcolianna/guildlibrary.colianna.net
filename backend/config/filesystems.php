@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    'default' => env('FILESYSTEM_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +38,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => dirname(base_path()).'/public/assets',
+            'root' => dirname(base_path()).'/frontend/public/assets',
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
@@ -70,7 +70,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => dirname(base_path()).'/public/assets',
+        public_path('storage') => dirname(base_path()).'/frontend/public/assets',
     ],
 
 ];
