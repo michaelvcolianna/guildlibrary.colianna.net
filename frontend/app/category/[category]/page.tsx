@@ -20,7 +20,8 @@ export const generateMetadata = (
 
   return {
     title: `Category: ${name} | The Guild Library Appendix`,
-    description: description
+    description: description,
+    robots: 'noai, noimageai'
   }
 }
 

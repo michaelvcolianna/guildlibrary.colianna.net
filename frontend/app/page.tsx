@@ -8,6 +8,7 @@ import { categoryList } from '@/app/categories'
 export const metadata = {
   title: 'The Guild Library Appendix',
   description: 'The home page for the Guild Library Appendix, with a list of categories',
+  robots: 'noai, noimageai'
 }
 
 // @return ReactNode
